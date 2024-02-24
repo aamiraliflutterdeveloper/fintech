@@ -1,0 +1,138 @@
+import 'dart:async';
+
+import 'package:fintech_app/constants/app_colors.dart';
+import 'package:fintech_app/constants/assets_path.dart';
+import 'package:fintech_app/global_widgets/black_bg_widget.dart';
+import 'package:fintech_app/global_widgets/custom_elevated_button.dart';
+import 'package:fintech_app/global_widgets/custom_text.dart';
+import 'package:fintech_app/global_widgets/custom_toast.dart';
+import 'package:fintech_app/global_widgets/custom_white_box.dart';
+import 'package:fintech_app/screens/blue_bg_screens/mpin_screen/pin_form.dart';
+import 'package:fintech_app/screens/transaction/transaction_success_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../../global_widgets/keyboard_with_thumb/keyboard_methods.dart';
+import '../../../global_widgets/keyboard_with_thumb/keyboard_with_thumb.dart';
+import '../../../utils/nav_router.dart';
+
+class EnterPinScreen extends StatefulWidget {
+  const EnterPinScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EnterPinScreen> createState() => _EnterPinScreenState();
+}
+
+class _EnterPinScreenState extends State<EnterPinScreen> {
+  final textEditingController = TextEditingController();
+
+  StreamController<ErrorAnimationType>? errorController;
+
+  bool hasError = false;
+  String currentText = "";
+  bool isEnable = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlackBgWidget(
+      horizontal: 0.0,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 25,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: CustomText(
+                  text: 'Enter Your Pin',
+                  fontSize: 32,
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),
+                child: CustomText(
+                  text: 'Enter your 4 digit MPIN',
+                  fontSize: 16,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 20, bottom: 5),
+                width: MediaQuery.of(context).size.width,
+                child: CustomWhiteBox(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PinForm(
+                        textEditingController: textEditingController,
+                        onChanged: (value) {
+                          print(value);
+                          setState(() {
+                            currentText = value;
+                          });
+                          if (value.length >= 4) {
+                            isEnable = true;
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: CustomText(
+                          text:
+                              "Don't use same or sequential characters while creating your MPIN",
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: CustomKeyboardWithThumb(
+              onTextInput: (myText) {
+                insertText(myText, textEditingController);
+                setState(() {});
+              },
+              onBackspace: () {
+                backspace(textEditingController);
+              },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            alignment: Alignment.bottomCenter,
+            child: CustomElevatedButton(
+                width: MediaQuery.of(context).size.width * .8,
+                onPress: () {
+                  isEnable
+                      ? NavRouter.push(context, TransactionSuccessScreen())
+                      : customToast('Please enter the MPIN');
+                },
+                primaryColor: isEnable == false
+                    ? AppColors.whiteColor
+                    : AppColors.blueDark,
+                title: 'Continue',
+                textColor: isEnable == false
+                    ? AppColors.blueDark
+                    : AppColors.whiteColor,
+                alignment: MainAxisAlignment.spaceBetween,
+                image: isEnable == false
+                    ? AssetsPath.IC_green_line_bottom_button
+                    : AssetsPath.IC_white_line_bottom_button),
+          ),
+        ],
+      ),
+    );
+  }
+}

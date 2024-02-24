@@ -1,0 +1,70 @@
+{
+  "project_info": {
+    "project_number": "836387052735",
+    "project_id": "fintech-59952",
+    "storage_bucket": "fintech-59952.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836387052735:android:d51b6627b71cd1dcf77a0a",
+        "android_client_info": {
+          "package_name": "com.example.fintech_app_flutter.fintech_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836387052735-0pq742cdkq5fnm4r9616ejop2sqiu608.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fintech_app_flutter.fintech_app",
+            "certificate_hash": "892d3364ea36888535f8230c00525e40f5d420aa"
+          }
+        },
+        {
+          "client_id": "836387052735-ljcda1alcc34crf6hqfma9ophoou0r4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fintech_app_flutter.fintech_app",
+            "certificate_hash": "d9f48d1379dee9a3d24fe3ba403961e3d448bb86"
+          }
+        },
+        {
+          "client_id": "836387052735-rbpn2k9pi7elfj5psfe0qvg24404hv96.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fintech_app_flutter.fintech_app",
+            "certificate_hash": "a21de3e8568b5eb9384f195b815507032bee1108"
+          }
+        },
+        {
+          "client_id": "836387052735-elae2aj42171vuh9on7pnpt5ru01cssv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgi5xqZlpaLjuSaxqGJ-qB0MOOPfbv7p0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836387052735-elae2aj42171vuh9on7pnpt5ru01cssv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "836387052735-89qdao04hpe40f2tlfgilugj582h6hhs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fintechappflutter.fintechApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
